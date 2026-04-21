@@ -1,0 +1,90 @@
+﻿@model Utilities.Helpers.PaginatedList<ProductManagementSystem.Models.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Product Listing</h1>
+
+<p>
+    <a asp-action="Create">Create New</a> | <a asp-controller="Categories" asp-action="Index">Categories</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ProductCode
+            </th>
+            <th>
+                ProductName
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Actions
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                R @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <img src="@Url.Content("~" + item.Image.Replace("\\", "/"))"
+                        alt="@item.ProductName"
+                        width="80" height="80"
+                        style="object-fit: cover; border-radius: 5px;" 
+                        />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = Model.HasPreviousPage ? "" : "disabled";
+    var nextDisabled = Model.HasNextPage ? "" : "disabled";
+}
+<div class="mt-3">
+    <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageNumber - 1)"
+           class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
+
+    <span class="mx-2">Page @Model.PageNumber of @Model.TotalPages</span>
+
+    <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageNumber + 1)"
+           class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+</div>

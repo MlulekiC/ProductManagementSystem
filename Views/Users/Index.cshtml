@@ -1,0 +1,86 @@
+﻿@model ProductManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Log In";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+            input[type=text], select, textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-top: 4px;
+                margin-bottom: 10px;
+            }
+
+            input[type=submit] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .container {
+                width: 80%;
+                max-width: 500px;
+                height: 100%;
+                max-height: 500px;
+                margin: 0 auto;
+                border-radius: 6px;
+                background-color: #F2F2F2;
+                padding: 20px;
+            }
+
+            h2, h3 {
+                text-align: center;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            textarea {
+                resize: vertical;
+            }
+
+            .container {
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <h2>Welcome Back</h2>
+    <div class="container">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" placeholder="Email Addess.." />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" placeholder="Enter password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <p>
+                <a asp-action="Create">Don't have an Account?</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
