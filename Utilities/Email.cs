@@ -28,7 +28,7 @@ namespace Utilities
                 await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
 
                 // Authenticate google credentials
-                await client.AuthenticateAsync("MlulekiM2000@gmail.com", "jquq xwtp qesp dusd");
+                await client.AuthenticateAsync("EmailAddressHere", "GmailAppPasswordHere");
 
                 string str = await client.SendAsync(message);
                 if (str.Contains("2.0.0 OK"))
